@@ -11,7 +11,7 @@
       highlight-current-row
       @row-dblclick="handleRowDblClick"
     >
-      <el-table-column type="expand">
+      <el-table-column type="expand" width="40px">
         <template #default="props">
           <el-table 
             :data="props.row.detail" 
@@ -29,7 +29,7 @@
           </el-table>
         </template>
       </el-table-column>
-      <el-table-column label="日付" prop="date" width="35px"></el-table-column>
+      <el-table-column label="日付" prop="date" width="40px"></el-table-column>
       <el-table-column label="曜日" prop="day" width="35px"></el-table-column>
       <el-table-column label="予定" prop="schedule">
         <template #default="{ row }">
