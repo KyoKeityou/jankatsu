@@ -2,16 +2,25 @@
   <div class="calendar-table">
     <el-table 
       ref="myCalendarTable"
-      :data="days" 
+      :data="calendarData" 
       :border="true" 
       :show-header="false" 
       style="width: 100%; font-family: 'Meiryo', sans-serif; font-size: 12px;" 
       :row-class-name="getRowClassName"
       highlight-current-row
+      @row-dblclick="handleRowDblClick"
     >
+      <el-table-column type="expand">
+        <template #default="props">
+          <el-table :data="props.row.detail" :border="false">
+            <el-table-column prop="time" />
+            <el-table-column prop="plan" />
+          </el-table>
+        </template>
+      </el-table-column>
       <el-table-column label="日付" prop="date" width="40px"></el-table-column>
       <el-table-column label="曜日" prop="day" width="40px"></el-table-column>
-      <el-table-column label="予定"></el-table-column>
+      <el-table-column label="予定" prop="schedule"></el-table-column>
     </el-table>
   </div>
 </template>
@@ -21,8 +30,7 @@ import { ref } from 'vue';
 
 export default {
   setup() {
-    const days = ref([]);
-    // カレンダーの日付を生成し、日付と曜日をオブジェクトとしてdays配列に追加
+    const calendarData = ref([]);
     const startDate = new Date();
     startDate.setDate(1); // 1日からスタート
     const endDate = new Date(startDate);
@@ -31,12 +39,21 @@ export default {
     while (startDate <= endDate) {
       const date = startDate.getDate();
       const day = ['日', '月', '火', '水', '木', '金', '土'][startDate.getDay()];
-      days.value.push({ date, day });
+      const schedule = '13:00～ 雀荘新宿店、18:00～ 新橋麻雀BAR';
+      const detail = ref([]);
+      const detailCount = 2;
+      var i = 1;
+      while (i <= detailCount) {
+        const time = '13:00 ～ 17:00';
+        const plan = '雀荘新宿店';
+        detail.value.push({ time, plan });
+        i++;
+      }
+      calendarData.value.push({ date, day, schedule, detail });
       startDate.setDate(startDate.getDate() + 1); // 1日進める
     }
     return {
-      days,
-      selectedRowIndex: null
+      calendarData
     };
   },
   methods: {
@@ -46,7 +63,11 @@ export default {
         return 'saturday-or-sunday';
       }
       return ''; // それ以外の行は何も返さない
-    }
+    },
+
+    handleRowDblClick(row) {
+      this.$refs.myCalendarTable.toggleRowExpansion(row);
+    },
   }
 };
 </script>
