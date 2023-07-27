@@ -23,7 +23,7 @@
             <el-table-column prop="plan" />
             <el-table-column label="" prop="">
               <template #default="{ row }">
-                <img src="../assets/Twitter.png" alt="Twitter" class="custom-image" v-if="row && row.plan !== '買い物(プライベート予定)'" />
+                <img src="../assets/Twitter.png" alt="Twitter" class="custom-image" v-if="row && row.plan !== '買い物'" />
               </template>
             </el-table-column>
           </el-table>
