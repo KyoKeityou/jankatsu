@@ -1,5 +1,5 @@
 <template>
-  <h3>マイカレンダー(プロ)&nbsp;&nbsp;&nbsp;{{ getCurrentYearMonth }}</h3>
+  <h4>マイカレンダー(プロ)&nbsp;&nbsp;&nbsp;{{ getCurrentYearMonth }}</h4>
   <div class="calendar-table">
     <el-table 
       ref="myCalendarTable"
@@ -48,7 +48,7 @@ export default {
     const getRandomData = (selectedOptions) => {
       const options = [
         { time: '13:00～15:00', plan: '雀荘新宿店' },
-        { time: '15:00～16:00', plan: '買い物(private)' },
+        { time: '15:00～16:00', plan: '買い物' },
         { time: '16:00～18:00', plan: '雀荘上野店' },
         { time: '18:00～20:00', plan: '新橋麻雀BAR' },
         { time: '22:00～24:00', plan: '銀座麻雀BAR' }
