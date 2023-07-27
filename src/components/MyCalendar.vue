@@ -29,8 +29,8 @@
           </el-table>
         </template>
       </el-table-column>
-      <el-table-column label="日付" prop="date" width="40px"></el-table-column>
-      <el-table-column label="曜日" prop="day" width="40px"></el-table-column>
+      <el-table-column label="日付" prop="date" width="35px"></el-table-column>
+      <el-table-column label="曜日" prop="day" width="35px"></el-table-column>
       <el-table-column label="予定" prop="schedule">
         <template #default="{ row }">
           <span>{{ concatPlans(row.detail) }}</span>
@@ -48,7 +48,7 @@ export default {
     const getRandomData = (selectedOptions) => {
       const options = [
         { time: '13:00～15:00', plan: '雀荘新宿店' },
-        { time: '15:00～16:00', plan: '買い物(プライベート予定)' },
+        { time: '15:00～16:00', plan: '買い物(private)' },
         { time: '16:00～18:00', plan: '雀荘上野店' },
         { time: '18:00～20:00', plan: '新橋麻雀BAR' },
         { time: '22:00～24:00', plan: '銀座麻雀BAR' }
