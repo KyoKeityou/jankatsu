@@ -1,6 +1,6 @@
 <template>
-  <div class="calendar-container">
-    <el-table :data="days" border style="width: 100%">
+  <div class="calendar-table">
+    <el-table :data="days" :border="true" style="width: 100%; font-family: 'Meiryo', sans-serif; font-size: 12px;">
       <el-table-column label="日付" prop="date" width="100"></el-table-column>
       <el-table-column label="曜日" prop="day" width="100"></el-table-column>
       <el-table-column label="予定"></el-table-column>
@@ -34,26 +34,25 @@ export default {
       days,
     };
   },
+  methods: {
+  }
 };
 </script>
 
 <style>
-.calendar-container {
-  height: 100vh;
-  /* overflow-y: auto; */
-  font-family: "Meiryo", sans-serif;
-  font-size: 8px;
+/* テーブルのセル（行）のスタイル */
+.calendar-table .el-table__row {
+  height: 25px; /* セルの高さを指定 */
+  padding: 0; /* セルの余白（パディング）をなくす */
 }
 
-.calendar-table {
-  border-collapse: collapse;
-  /* width: 100%; */
+/* テーブルのヘッダーセルのスタイル */
+.calendar-table .el-table__header th {
+  padding: 0; /* ヘッダーセルの余白（パディング）をなくす */
 }
 
-.calendar-table th, .calendar-table td {
-  border: 1px solid #000;
-  /* padding: 8px; */
-  /* text-align: center; */
-  width: 200px;
+/* テーブルのセル（データ）のスタイル */
+.calendar-table .el-table__body td {
+  padding: 0; /* セル（データ）の余白（パディング）をなくす */
 }
 </style>
