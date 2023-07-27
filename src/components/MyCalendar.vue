@@ -1,21 +1,10 @@
 <template>
-  <div>
-    <table class="calendar-table">
-      <thead>
-        <tr>
-          <th>日付</th>
-          <th>曜日</th>
-          <th>予定</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="day in days" :key="day.date">
-          <td>{{ day.date }}</td>
-          <td>{{ day.day }}</td>
-          <td>ホワイト新橋SL店</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="calendar-container">
+    <el-table :data="days" border style="width: 100%">
+      <el-table-column label="日付" prop="date" width="100"></el-table-column>
+      <el-table-column label="曜日" prop="day" width="100"></el-table-column>
+      <el-table-column label="予定"></el-table-column>
+    </el-table>
   </div>
 </template>
 
@@ -49,6 +38,13 @@ export default {
 </script>
 
 <style>
+.calendar-container {
+  height: 100vh;
+  /* overflow-y: auto; */
+  font-family: "Meiryo", sans-serif;
+  font-size: 8px;
+}
+
 .calendar-table {
   border-collapse: collapse;
   /* width: 100%; */
