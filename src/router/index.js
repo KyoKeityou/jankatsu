@@ -6,12 +6,12 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes: [
     {
-      path: './',
+      path: '/',
       name: 'HomePage',
       component: HomePage,
     },
     {
-      path: './proschedule',
+      path: '/proschedule',
       name: 'ProSchedule',
       component: ProSchedule,
     },
