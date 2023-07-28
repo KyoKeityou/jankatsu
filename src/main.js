@@ -5,7 +5,7 @@ import App from './App.vue';
 import ElementPlus from 'element-plus';
 import 'element-plus/theme-chalk/index.css';
 import HomePage from './views/HomePage.vue';
-import ProSchedule from './components/MyCalendar.vue';
+import ProSchedule from './components/ProSchedule.vue';
 
 const routes = [
   {
