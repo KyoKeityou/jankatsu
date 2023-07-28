@@ -8,7 +8,6 @@
       style="width: 100%; font-family: 'Meiryo', sans-serif; font-size: 14px;" 
       :row-class-name="getRowClassName"
       highlight-current-row
-      @row-dblclick="handleRowDblClick"
     >
       <el-table-column prop="date" width="45"></el-table-column>
       <el-table-column prop="day" width="45"></el-table-column>
@@ -67,9 +66,8 @@ export default {
       }
       return ''; // それ以外の行は何も返さない
     },
-    handleRowDblClick(row) {
-      this.$refs.myCalendarTable.toggleRowExpansion(row);
-    },
+    // handleRowDblClick(row) {
+    // },
   },
   computed: {
     getCurrentYearMonth() {
