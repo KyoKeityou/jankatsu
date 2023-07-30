@@ -2,11 +2,11 @@
 <template>
   <div>
     <div class="schedule-header">
+      <el-icon class="custom-image-plus" :size="30" color="#409eff"><Plus /></el-icon>
       <el-button type="primary" :icon="prevIcon" @click="prevMonth" plain class="prev-button"></el-button>
       <h4 class="year-month">{{ currentYear }}年{{ currentMonth }}月</h4>
       <el-button type="primary" :icon="nextIcon" @click="nextMonth" plain class="next-button"></el-button>
-      <el-icon class="custom-image" :size="30" color="#409eff"><Plus /></el-icon>
-      <img src="../assets/Twitter.png" alt="Twitter" class="custom-image" />
+      <img src="../assets/Twitter.png" alt="Twitter" class="custom-image-twitter" />
     </div>
     <div class="pro-schedule">
       <el-table 
@@ -18,7 +18,6 @@
         highlight-current-row
       >
         <!-- @row-dblclick="handleRowDblClick" -->
-
         <el-table-column prop="date" width="25" style="align-items: center;"></el-table-column>
         <el-table-column prop="day" width="30" style="align-items: center;"></el-table-column>
         <el-table-column prop="category" width="75" style="align-items: center;">
@@ -27,7 +26,7 @@
                 {{ row.category }}</el-button>
           </template>
         </el-table-column>
-        <el-table-column prop="title" width="200">
+        <el-table-column prop="title" width="170">
           <template #default="{ row }">
             <div class="title-cell">{{ row.title }}</div>
           </template>
@@ -109,7 +108,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px; /* 年月の左右に固定の間隔を設定 */
   font-family: 'Meiryo', sans-serif; 
   background: #a4e1ec;
 }
@@ -124,11 +122,17 @@ export default {
 .year-month {
   text-align: center; /* 年月を中央寄せ */
 }
-.custom-image {
-  /* 画像に適用したいスタイルを指定 */
+.custom-image-plus {
   cursor: pointer;
   display: block;
-  margin-left: 60px;
+  margin-left: 20px;
+  margin-right: auto;
+}
+.custom-image-twitter {
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: 20px;
 }
 .pro-schedule .el-table__row {
   padding: 0;
@@ -143,7 +147,7 @@ export default {
   padding: 0 2px; 
 }
 .title-cell {
-  padding-left: 8px;
+  padding-left: 5px;
 }
 .el-table__body tr.current-row > td {
   background: #36dacc !important;
@@ -155,7 +159,7 @@ export default {
   border: none; /* ボーダーをなしにする */
   font-family: 'Meiryo', sans-serif;
   font-size: 8px !important;
-  width: 100%;
+  width: 70px;
   height: 12px !important; /* ボタンの高さを調整 */
 }
 /* カテゴリーに応じて背景色とテキスト色を指定 */
