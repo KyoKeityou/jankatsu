@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from '../views/HomePage.vue';
 import ProSchedule from '../components/ProSchedule.vue';
+import CreateSchedule from '../components/CreateSchedule.vue';
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -15,7 +16,11 @@ const router = createRouter({
       name: 'ProSchedule',
       component: ProSchedule,
     },
-    // 他のルート設定
+    {
+      path: '/createschedule',
+      name: 'CreateSchedule',
+      component: CreateSchedule,
+    }
   ],
 });
 
