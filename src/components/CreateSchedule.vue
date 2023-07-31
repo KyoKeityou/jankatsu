@@ -20,16 +20,16 @@
           <el-option label="プライベート" value="c4"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item v-if="!locationDisabled" label="場所">
-        <el-select v-model="form.location" placeholder="選択してください">
+      <el-form-item v-if="!locationDisabled1" label="場所">
+        <el-select v-model="form.location1" placeholder="選択してください">
           <el-option label="ドラゴン雀荘渋谷店" value="l1"></el-option>
           <el-option label="じゃんかつ池袋店" value="l2"></el-option>
           <el-option label="麻雀BAR銀座" value="l3"></el-option>
           <el-option label="麻雀BAR新橋" value="l4"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item v-if="!locationDisabled" label="場所">
-        <el-input v-model="form.location" placeholder="フリー入力" />
+      <el-form-item v-if="!locationDisabled2" label="場所">
+        <el-input v-model="form.location2" placeholder="フリー入力" />
       </el-form-item>
       <el-form-item label="メモ">
         <el-input type="textarea" v-model="form.memo" />
@@ -60,7 +60,8 @@ export default {
         timeto: null,
       },
       selectedDay: "",
-      locationDisabled: true,
+      locationDisabled1: true,
+      locationDisabled2: true,
       rules: {
         date: [{ required: true, message: "日付を選択してください", trigger: "change" }],
         category: [{ required: true, message: "カテゴリを選択してください", trigger: "change" }],
@@ -84,9 +85,13 @@ export default {
       }
     },
     handleCategoryChange(value) {
-      this.locationDisabled = value === "c1" || value === "c2";
-      if (this.locationDisabled) {
-        this.form.location = ""; // カテゴリが変わったら場所をリセット
+      this.locationDisabled1 = value === "c3" || value === "c4";
+      if (this.locationDisabled1) {
+        this.form.location1 = "";
+      }
+      this.locationDisabled2 = value === "c1" || value === "c2";
+      if (this.locationDisabled2) {
+        this.form.location2 = "";
       }
     },
     submitForm() {
