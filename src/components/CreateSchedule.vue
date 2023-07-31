@@ -1,12 +1,18 @@
 <template>
   <div class="create-schedule">
-    <h2>Create Schedule</h2>
-    <el-form :model="form" :rules="rules" ref="form" label-width="100px">
-      <el-form-item label="日付(date)">
+    <h2>スケジュール登録</h2>
+    <el-form
+      ref="form"
+      :model="form"
+      :rules="rules"
+      label-width="auto"
+      :label-position="left"
+    >
+      <el-form-item label="日付">
         <el-date-picker v-model="form.date" type="date" placeholder="選択してください" @change="updateDay" />
-        <span>{{ selectedDay }}</span>
+        <!-- <span>{{ selectedDay }}</span> -->
       </el-form-item>
-      <el-form-item label="カテゴリ(category)">
+      <el-form-item label="カテゴリ">
         <el-select v-model="form.category" placeholder="選択してください" @change="handleCategoryChange">
           <el-option label="常勤" value="c1"></el-option>
           <el-option label="ゲスト" value="c2"></el-option>
@@ -14,30 +20,28 @@
           <el-option label="プライベート" value="c4"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="場所(location)">
-        <template v-if="!locationDisabled">
-          <el-select v-model="form.location" placeholder="選択してください">
-            <el-option label="ドラゴン雀荘渋谷店" value="l1"></el-option>
-            <el-option label="じゃんかつ池袋店" value="l2"></el-option>
-            <el-option label="麻雀BAR銀座" value="l3"></el-option>
-            <el-option label="麻雀BAR新橋" value="l4"></el-option>
-          </el-select>
-        </template>
-        <template v-else>
-          <el-input v-model="form.location" placeholder="フリー入力" />
-        </template>
+      <el-form-item v-if="!locationDisabled" label="場所">
+        <el-select v-model="form.location" placeholder="選択してください">
+          <el-option label="ドラゴン雀荘渋谷店" value="l1"></el-option>
+          <el-option label="じゃんかつ池袋店" value="l2"></el-option>
+          <el-option label="麻雀BAR銀座" value="l3"></el-option>
+          <el-option label="麻雀BAR新橋" value="l4"></el-option>
+        </el-select>
       </el-form-item>
-      <el-form-item label="メモ(memo)">
+      <el-form-item v-if="!locationDisabled" label="場所">
+        <el-input v-model="form.location" placeholder="フリー入力" />
+      </el-form-item>
+      <el-form-item label="メモ">
         <el-input type="textarea" v-model="form.memo" />
       </el-form-item>
-      <el-form-item label="開始時間(timefrom)">
+      <el-form-item label="開始時間">
         <el-time-picker v-model="form.timefrom" :picker-options="timeOptions" />
       </el-form-item>
-      <el-form-item label="終了時間(timeto)">
+      <el-form-item label="終了時間">
         <el-time-picker v-model="form.timeto" :picker-options="timeOptions" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm">Submit</el-button>
+        <el-button type="primary" @click="submitForm">登録</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -56,7 +60,7 @@ export default {
         timeto: null,
       },
       selectedDay: "",
-      locationDisabled: false,
+      locationDisabled: true,
       rules: {
         date: [{ required: true, message: "日付を選択してください", trigger: "change" }],
         category: [{ required: true, message: "カテゴリを選択してください", trigger: "change" }],
@@ -81,6 +85,9 @@ export default {
     },
     handleCategoryChange(value) {
       this.locationDisabled = value === "c1" || value === "c2";
+      if (this.locationDisabled) {
+        this.form.location = ""; // カテゴリが変わったら場所をリセット
+      }
     },
     submitForm() {
       this.$refs.form.validate((valid) => {
